@@ -1,0 +1,5 @@
+---
+show_commands:
+ - show version
+ - show interface
+ - show ip route

@@ -1,0 +1,20 @@
+---
+## Step to run playbook ##
+
+# git clone https://github.com/ganeshrn/playbook_exercise_1/
+# cd book
+# ansible-playbook scenario_2/main.yml
+
+####
+
+
+
+- name: Run arbitrary commands on remote host
+  hosts: all
+  tasks:
+  - import_role:
+      name: network-command
+      tasks_from: get
+    vars:
+      commands: "{{ show_commands }}"
+
