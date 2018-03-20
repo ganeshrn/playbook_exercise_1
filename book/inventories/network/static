@@ -1,0 +1,42 @@
+[all:vars]
+ansible_python_interpreter=python
+ansible_user=ansible
+ansible_password=ansible
+
+[eos]
+veos02 ansible_host=an-veos-02.ansible.eng.rdu2.redhat.com
+
+[eos:vars]
+ansible_network_os=eos
+ansible_become=yes
+ansible_become_method=enable
+
+[junos]
+vsrx02 ansible_host=an-vsrx-02.ansible.eng.rdu2.redhat.com
+
+[junos:vars]
+ansible_network_os=junos
+ansible_password=Ansible
+
+[nxos]
+nxos02 ansible_host=an-nxos-02.ansible.eng.rdu2.redhat.com
+
+[nxos:vars]
+ansible_network_os=nxos
+
+[ios]
+ios01 ansible_host=an-ios-01.ansible.eng.rdu2.redhat.com
+
+[ios:vars]
+ansible_network_os=ios
+ansible_become=yes
+ansible_become_method=enable
+ansible_become_pass=cisco
+
+[vyos]
+vyos01 ansible_host=an-vyos-01.ansible.eng.rdu2.redhat.com
+
+[vyos:vars]
+ansible_network_os=vyos
+
+
