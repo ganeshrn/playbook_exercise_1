@@ -1,0 +1,7 @@
+- junos_facts:
+    gather_subset: default
+  register: facts
+
+- junos_config:
+    backup: yes
+  register: conf_result

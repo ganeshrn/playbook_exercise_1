@@ -1,0 +1,16 @@
+---
+- include: "{{ ansible_network_os }}.yaml"
+
+- file:
+    path: "device_configs/{{ ansible_network_os }}"
+    state: directory
+
+- copy:
+    src: "{{ config['backup_path'] }}"
+    dest: device_configs/{{ ansible_network_os }}/{{ facts['ansible_facts']['ansible_net_hostname']}}
+    force: yes
+  register: copy_result
+
+- debug:
+    msg: "Configuration updated!"
+  when: copy_result.changed

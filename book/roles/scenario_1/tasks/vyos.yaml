@@ -1,0 +1,7 @@
+- vyos_facts:
+    gather_subset: default
+  register: facts
+
+- vyos_config:
+    backup: yes
+  register: conf_result

@@ -1,0 +1,7 @@
+- nxos_facts:
+    gather_subset: default
+  register: facts
+
+- nxos_config:
+    backup: yes
+  register: conf_result

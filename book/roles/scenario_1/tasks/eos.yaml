@@ -1,0 +1,7 @@
+- eos_facts:
+    gather_subset: default
+  register: facts
+
+- eos_config:
+    backup: yes
+  register: config

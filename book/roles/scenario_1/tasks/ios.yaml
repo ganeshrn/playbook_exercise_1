@@ -1,0 +1,7 @@
+- ios_facts:
+    gather_subset: default
+  register: facts
+
+- ios_config:
+    backup: yes
+  register: conf_result
