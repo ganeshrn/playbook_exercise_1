@@ -1,0 +1,33 @@
+---
+system:
+  hostname: <insert inventory host value here> (Hint: it should not be an-veos-02.ansible.eng.rdu2.redhat.com)
+  domain_name: ansible.com
+
+  domain_lookup:
+    enabled: yes
+    source_interface: Management1
+    vrf: oob-mgmt
+
+  name_servers:
+    - 8.8.8.8
+    - 8.8.4.4
+
+interfaces:
+
+  Loopback0:
+    enabled: no
+    address_family:
+      ipv4:
+        address: 1.1.1.1
+        masklen: 32
+
+  Ethernet1:
+    description: test
+    enabled: no
+
+  Ethernet2:
+    description: this is a test description
+    enabled: no
+    mode: switchport
+
+
