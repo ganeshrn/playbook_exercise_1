@@ -1,0 +1,23 @@
+---
+## Step to run playbook ##
+
+# git clone https://github.com/ganeshrn/playbook_exercise_1/
+# cd book
+# ansible-playbook scenario_4/main.yml
+
+####
+
+
+
+- hosts: ios
+  tasks:
+    - ios_command:
+        commands: ping 10.8.38.1
+      register: result
+
+    - fail:
+        msg: Ping failed
+      when: result.stdout_lines[0][-2] != '!!!!!'
+
+    - debug:
+        msg: Ping succeeded

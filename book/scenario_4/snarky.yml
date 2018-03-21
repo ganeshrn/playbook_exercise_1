@@ -1,0 +1,18 @@
+---
+## Step to run playbook ##
+
+# git clone https://github.com/ganeshrn/playbook_exercise_1/
+# cd book
+# ansible-playbook scenario_4/snarky.yml
+
+####
+
+
+
+- hosts: ios
+  tasks:
+    - ios_ping:
+        dest: 10.8.38.1
+
+    - debug:
+        msg: Ping succeeded
