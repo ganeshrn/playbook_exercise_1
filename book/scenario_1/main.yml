@@ -1,0 +1,28 @@
+---
+## Step to run playbook ##
+
+# git clone https://github.com/ganeshrn/playbook_exercise_1/
+# cd book
+# ansible-playbook scenario_1/main.yml
+
+####
+
+
+
+- hosts: all
+  tasks:
+    - include: "{{ ansible_network_os }}.yml"
+
+    - file:
+        path: "device_configs/{{ ansible_network_os }}"
+        state: directory
+
+    - copy:
+        src: "{{ backup_path }}"
+        dest: device_configs/{{ ansible_network_os }}/{{ hostname }}
+        force: yes
+      register: copy_result
+
+    - debug:
+        msg: "Configuration updated!"
+      when: copy_result.changed

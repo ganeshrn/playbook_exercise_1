@@ -1,0 +1,11 @@
+- vyos_facts:
+    gather_subset: default
+  register: facts
+
+- vyos_config:
+    backup: yes
+  register: config
+
+- set_fact:
+    hostname: "{{ facts['ansible_facts']['ansible_net_hostname'] }}"
+    backup_path: "{{ config['backup_path'] }}"
