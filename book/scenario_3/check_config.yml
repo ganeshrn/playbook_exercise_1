@@ -1,0 +1,18 @@
+---
+## Step to run playbook ##
+
+# git clone https://github.com/ganeshrn/playbook_exercise_1/
+# cd book
+# ansible-playbook scenario_3/check_config.yml -vvvv --extra-vars "is_enable=False"
+
+####
+- name: Validate config on eos
+  hosts: eos
+  tasks:
+  - import_role:
+      name: network-config-template
+      tasks_from: check_config
+
+  - name: print config diff
+    debug:
+      msg: "{{ result.diff }}"

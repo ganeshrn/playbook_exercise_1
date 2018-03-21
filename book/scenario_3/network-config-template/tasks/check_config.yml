@@ -1,0 +1,13 @@
+---
+- name: check for required fact ansible_network_os
+  fail:
+    msg: "missing required fact: ansible_network_os"
+  when: ansible_network_os is undefined
+
+- name: check eos config
+  eos_config:
+    lines: "{{ lookup('template', 'config.j2') }}"
+  check_mode: yes
+  register: result
+  when: ansible_network_os == "eos"
+

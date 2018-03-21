@@ -1,0 +1,31 @@
+---
+system:
+  hostname: "{{ ansible_host }}"
+  domain_name: ansible.com
+
+  domain_lookup:
+    enabled: yes
+    source_interface: Management1
+    vrf: oob-mgmt
+
+  name_servers:
+    - 8.8.8.8
+    - 8.8.4.4
+
+interfaces:
+  Loopback0:
+    enabled: "{{ is_enable|default(True) }}"
+    address_family:
+      ipv4:
+        address: 1.1.1.1
+        masklen: 32
+
+  Ethernet1:
+    description: test
+    enabled: "{{ is_enable|default(True) }}"
+
+  Ethernet2:
+    description: this is a test description
+    enabled: "{{ is_enable|default(True) }}"
+    mode: switchport
+

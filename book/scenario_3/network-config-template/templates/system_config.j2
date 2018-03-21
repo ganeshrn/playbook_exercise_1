@@ -1,0 +1,15 @@
+{% if 'hostname' in system %}
+hostname {{ system.hostname }}
+{% endif %}
+{% if 'domain_name' in system %}
+ip domain-name {{ system.domain_name }}
+{% endif %}
+{% if 'domain_lookup' in system %}
+ip domain lookup vrf oob-mgmt source-interface {{ system.domain_lookup.source_interface }}
+{% endif %}
+{% if 'name_servers' in system %}
+{% for server in system.name_servers %}
+ip name-server {{ server }}
+{% endfor %}
+{% endif %}
+

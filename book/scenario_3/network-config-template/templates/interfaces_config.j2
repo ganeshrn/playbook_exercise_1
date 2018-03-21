@@ -1,0 +1,18 @@
+{% for name, value in interfaces.iteritems() %}
+
+interface {{ name }}
+{% if 'description' in value %}
+  description {{ value.description }}
+{% endif %}
+{% if 'enabled' in value and not value.enabled %}
+  shutdown
+{% endif %}
+{% if 'address_family' in value %}
+  ip address {{ value.address_family.ipv4.address }}/{{ value.address_family.ipv4.masklen }}
+{% else %}
+  no ip address
+{% endif %}
+{% if 'mode' in value %}
+  {{ value.mode }}
+{% endif %}
+{% endfor %}
