@@ -4,4 +4,8 @@
 
 - nxos_config:
     backup: yes
-  register: conf_result
+  register: config
+
+- set_fact:
+    hostname: "{{ facts['ansible_facts']['ansible_net_hostname'] }}"
+    backup_path: "{{ config['backup_path'] }}"
