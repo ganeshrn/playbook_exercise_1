@@ -2,10 +2,23 @@
     commands: show configuration system host-name
   register: hostname
 
-- junos_config:
-    backup: yes
+#- junos_config:
+#    backup: yes
+#  register: config
+
+- junos_command:
+    commands: show config | display set
   register: config
+
+- tempfile:
+    state: file
+  register: result
+
+- copy:
+    dest: "{{ result.path }}"
+    content: "{{ config.stdout[0] }}"
 
 - set_fact:
     hostname: "{{ hostname['stdout'][0][10:-1] }}"
-    backup_path: "{{ config['backup_path'] }}"
+    #backup_path: "{{ config['backup_path'] }}"
+    backup_path: "{{ result.path }}"
